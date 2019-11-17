@@ -1,0 +1,11 @@
+docker-build/tests/Dockerfile
+*.log
+*.apk
+*.gz
+**/target
+**/.classpath
+**/.factorypath
+**/.project
+**/.settings
+bin
+logs

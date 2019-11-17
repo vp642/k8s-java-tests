@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox-pod
+  namespace: default
+spec:
+  containers:
+  - command:
+    - sh
+    - -c
+    - echo Hello Kubernetes! && sleep 3600
+    image: dtestage-dtr.sunlifecorp.com/dte/docker-image-build:EADC-281
+    imagePullPolicy: Never
+    name: busybox-container
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300

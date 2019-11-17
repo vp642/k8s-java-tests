@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+	<Appenders>
+		<RollingFile name="file" fileName="logs/docker-image-services.log"
+			immediateFlush="true" append="true"
+			filePattern="logs/defaultServer/logs/docker-image-services.%d{yyyy-MM-dd}.log.zip">
+			<DefaultRolloverStrategy max="200" />
+			<PatternLayout
+				pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t{10}] %-5level class: %class, method: %method (%line) - %msg%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+			</Policies>
+		</RollingFile>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%T] %-5level class: %class, method: %method (%line) - %msg%n" />
+				<!--  pattern="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %-5level class: %class, method: %method (%line) - %msg%n" /> -->
+		</Console>
+	</Appenders>
+	<Loggers>
+	<!--  
+		<Logger name="com.sunlife.dcs.operations.DockerImageServiceResource" level="trace" additivity="false">
+			<AppenderRef ref="default" />
+		</Logger>
+		 -->
+		<Root level="TRACE">
+			<AppenderRef ref="console"  />
+			<AppenderRef ref="file"  />
+		</Root>
+	</Loggers>
+</Configuration>
